@@ -1,1 +1,1 @@
-include ':app', ':ibs-android-rest-client'
+include ':app', ':ibs-android-rest-client', ':ibs-android-sdk'
