@@ -95,6 +95,7 @@
     <orderEntry type="library" exported="" name="retrofit-1.9.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.1.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.1.1" level="project" />
+    <orderEntry type="module" module-name="ibs-android-sdk" exported="" />
     <orderEntry type="module" module-name="ibs-android-rest-client" exported="" />
   </component>
 </module>

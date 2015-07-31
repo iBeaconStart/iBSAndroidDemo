@@ -3,4 +3,11 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+
+    <string name="button_ok">OK</string>
+
+    <string name="bt_not_enabled_title">Bluetooth not enabled</string>
+    <string name="bt_not_enabled_message">Please enable bluetooth in settings and restart this application.</string>
+    <string name="bt_le_not_available_title">Bluetooth LE not available</string>
+    <string name="bt_le_not_available_message">Sorry, this device does not support Bluetooth LE.</string>
 </resources>
