@@ -7,12 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.ibeaconstart.ibsandroidsdk.IBSSDK;
-import com.ibeaconstart.ibsandroidsdk.IBSSDKListener;
 import com.ibeaconstart.ibsrestclient.IBSRestClient;
 
 
 
-public class MainActivity extends ActionBarActivity implements IBSSDKListener {
+public class MainActivity extends ActionBarActivity  {
     IBSRestClient restClient;
 
     @Override
@@ -20,8 +19,8 @@ public class MainActivity extends ActionBarActivity implements IBSSDKListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        IBSSDK.getInstance().initWithListener(this);
-        IBSSDK.getInstance().verifyBluetooth(this);
+//        IBSSDK.getInstance().initWithListener(this);
+//        IBSSDK.getInstance().verifyBluetooth(this);
 
 //        restClient = new IBSRestClient(this, "bab4d787f2b3623c60885f9275f8c7fb");
 //
@@ -39,15 +38,6 @@ public class MainActivity extends ActionBarActivity implements IBSSDKListener {
 //        });
     }
 
-    @Override
-    public void bluetoothNotActivated() {
-        showAlert(R.string.bt_not_enabled_title, R.string.bt_not_enabled_message);
-    }
-
-    @Override
-    public void bluetoothLENotSupported() {
-        showAlert(R.string.bt_le_not_available_title, R.string.bt_le_not_available_message);
-    }
 
     private void showAlert(int titleId, int messageId) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
