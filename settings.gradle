@@ -1,1 +1,1 @@
-include ':app', ':ibs-android-rest-client', ':ibs-android-sdk'
+include ':app', ':ibs-android-rest-client', ':ibs-android-sdk', ':ibs-altbeacon'
