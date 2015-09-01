@@ -33,17 +33,6 @@ public class MainActivity extends Activity implements BeaconConsumer {
     private static final String TAG = MainActivity.class.getSimpleName();
     IBSRestClient restClient;
 
-    private static final String BEACON_PARSERS[] = {
-            "m:2-3=0215,i:4-19,i:20-21,i:22-23,p:24-24",
-            "m:2-3=beac,i:4-19,i:20-21,i:22-23,p:24-24,d:25-25",
-            "m:2-3=0203,i:14-19l,d:10-13,p:9-9",
-            "s:0-1=feaa,m:2-2=00,p:3-3:-41,i:4-13,i:14-19",
-            "x,s:0-1=feaa,m:2-2=20,d:3-3,d:4-5,d:6-7,d:8-11,d:12-15",
-            "s:0-1=feaa,m:2-2=10,p:3-3:-41,i:4-20v"
-    };
-    public static final String BEACON_PARSER_NAMES[] = {
-            "iBeacon", "AltBeacon", "Samsung", "Eddystone-UID", "Eddystone-TLM", "Eddystone-URL"
-    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,11 +40,7 @@ public class MainActivity extends Activity implements BeaconConsumer {
         setContentView(R.layout.activity_main);
 
         //LogManager.setLogger(Loggers.verboseLogger());
-
-        for (String beaconLayout: BEACON_PARSERS) {
-            BeaconManager.getInstanceForApplication(this).getBeaconParsers().add(new BeaconParser().setBeaconLayout(beaconLayout));
-        }
-
+        BeaconManager.getInstanceForApplication(this).setBackgroundMode(false);
         BeaconManager.getInstanceForApplication(this).bind(this);
 
 //        IBSSDK.getInstance().initWithListener(this);
