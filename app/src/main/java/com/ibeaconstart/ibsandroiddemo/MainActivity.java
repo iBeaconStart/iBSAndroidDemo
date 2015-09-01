@@ -26,6 +26,7 @@ import org.altbeacon.beacon.logging.LogManager;
 import org.altbeacon.beacon.logging.Loggers;
 
 import java.util.Collection;
+import java.util.LinkedList;
 
 
 public class MainActivity extends Activity implements BeaconConsumer {
@@ -113,31 +114,36 @@ public class MainActivity extends Activity implements BeaconConsumer {
             mBeaconManager.setRangeNotifier(new RangeNotifier() {
                 @Override
                 public void didRangeBeaconsInRegion(Collection<Beacon> collection, Region region) {
-                    for(Beacon b : collection) {
-                        Log.i(TAG, "------------ BEACON ------------");
-                        Log.i(TAG, b.toString() + " at distance " + b.getDistance());
+                    for (Beacon b : collection) {
+                        Log.i(TAG, "Detected beacon " + b.toString() + " at distance " + b.getDistance());
                     }
                 }
             });
 
-//            mBeaconManager.setMonitorNotifier(new MonitorNotifier() {
-//                @Override
-//                public void didEnterRegion(Region region) {
-//                    Log.i(TAG, "I just saw an beacon for the first time!");
-//                }
-//
-//                @Override
-//                public void didExitRegion(Region region) {
-//                    Log.i(TAG, "I no longer see an beacon");
-//                }
-//
-//                @Override
-//                public void didDetermineStateForRegion(int state, Region region) {
-//                    Log.i(TAG, "I have just switched from seeing/not seeing beacons: " + state);
-//                }
-//            });
+            mBeaconManager.setMonitorNotifier(new MonitorNotifier() {
+                @Override
+                public void didEnterRegion(Region region) {
+                    Log.i(TAG, "didEnterRegion " + region.getUniqueId());
+                }
 
-            mBeaconManager.startRangingBeaconsInRegion(new Region("Server", Identifier.parse("b9407f30f5f8466eaff925556b57fe6d"), null, null));
+                @Override
+                public void didExitRegion(Region region) {
+                    Log.i(TAG, "didExitRegion " + region.getUniqueId());
+                }
+
+                @Override
+                public void didDetermineStateForRegion(int state, Region region) {
+                    Log.i(TAG, "didDetermineState" + state + " ForRegion " + region.getUniqueId());
+                }
+            });
+
+
+            mBeaconManager.startMonitoringBeaconsInRegion(new Region("Beacon1", Identifier.parse("b9407f30f5f8466eaff925556b57fe6d"), null, null));
+            mBeaconManager.startMonitoringBeaconsInRegion(new Region("Beacon2", Identifier.parse("b9407f30f5f8466eaff925556b57fe60"), null, null));
+
+            mBeaconManager.startRangingBeaconsInRegion(new Region("Beacon1", Identifier.parse("b9407f30f5f8466eaff925556b57fe6d"), null, null));
+            mBeaconManager.startRangingBeaconsInRegion(new Region("Beacon2", Identifier.parse("b9407f30f5f8466eaff925556b57fe60"), null, null));
+
         } catch (RemoteException e) {
             e.printStackTrace();
         }
